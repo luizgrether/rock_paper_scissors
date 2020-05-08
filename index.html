@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <title>Rock, Paper, Scissors</title>
+</head>
+
+<body>
+    <h1>Rock, Paper, Scissors</h1>
+    <div class="container">
+        <p class="start-message">Ready?<br>Choose an option!</p>
+        <div class="options">
+            <img id="rock" src="images/rock.png">
+            <img id="paper" src="images/paper.png">
+            <img id="scissors" src="images/scissors.png">
+            <img class="rock-hover hidden" src="images/rock-hover.png">
+            <img class="paper-hover hidden" src="images/paper-hover.png">
+            <img class="scissors-hover hidden" src="images/scissors-hover.png">
+        </div>
+        <div class="results"></div>
+        <div class="displays">
+
+            <div class="round hidden">
+                <p>ROUND</p>
+                <div class="board"></div>
+            </div>
+            <div class="display-player">
+                <p class="placeholder">0</p>
+            </div>
+            <div class="display-name-p">
+                <p>PLAYER SCORE</p>
+            </div>
+            <div class="display-computer">
+                <p class="placeholder">0</p>
+            </div>
+            <div class="display-name-c">
+                <p>COMPUTER SCORE</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+            function computerPlay() {
+                const options = ['rock', 'paper', 'scissors'];
+                return options[Math.floor(Math.random() * options.length)];
+            }
+
+            function playRound(playerSelection, computerSelection) {
+
+                if (playerSelection == computerSelection) {
+                    content.textContent = `It\'s a tie! You both chose ${playerSelection}`
+                } else if (playerSelection == 'rock') {
+                    if (computerSelection == 'paper') {
+                        content.textContent = `You lose! ${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}!`
+                        return "computerWins";
+                    } else if (computerSelection == 'scissors') {
+                        content.textContent = `You win! ${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}!`
+                        return "playerWins";
+                    }
+                } else if (playerSelection == 'paper') {
+                    if (computerSelection == 'rock') {
+                        content.textContent = `You win! ${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}!`
+                        return "playerWins";
+                    } else if (computerSelection == 'scissors') {
+                        content.textContent = `You lose! ${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}!`
+                        return "computerWins";
+                    }
+                } else if (playerSelection == 'scissors') {
+                    if (computerSelection == 'rock') {
+                        content.textContent = `You lose! ${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}!`
+                        return "computerWins";
+                    } else if (computerSelection == 'paper') {
+                        content.textContent = `You win! ${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}!`
+                        return "playerWins";
+                    }
+                } else {
+                    console.log(`Invalid option`);
+                }
+            }
+
+            function displayResults(playerScore, computerScore, roundCounter) {
+
+                playerPoints.textContent = playerScore
+                displayPlayer.appendChild(playerPoints)
+
+                computerPoints.textContent = computerScore
+                displayComputer.appendChild(computerPoints)
+
+                roundParagraph.textContent = roundCounter
+
+                if (roundCounter == 5) {
+
+                    results.classList.toggle('hidden')
+
+                    options.classList.add('hidden')
+
+
+                    const finalScore = document.createElement('div')
+                    finalScore.setAttribute('id', 'finalScore')
+                    container.appendChild(finalScore)
+
+                    const trophy = document.createElement('img')
+                    trophy.src = 'images/thophy.png'
+                    trophy.classList.add('trophy')
+                    document.getElementById('finalScore').appendChild(trophy)
+
+                    container.appendChild(playAgain)
+
+
+                    const winner = document.createElement('p')
+                    winner.classList.add('winner')
+                    finalScore.appendChild(winner)
+
+                    if (playerScore == computerScore) {
+                        winner.textContent = `IT\'S A TIE!`
+                    } else if (playerScore > computerScore) {
+                        winner.textContent = `PLAYER WON!`
+                    } else {
+                        winner.textContent = `COMPUTER WON!`
+                    }
+                }
+            }
+
+            let i = 0;
+            let playerScore = 0;
+            let computerScore = 0;
+
+            const container = document.querySelector('.container')
+            const results = document.querySelector('.results')
+            const content = document.createElement('p');
+            results.appendChild(content)
+
+            const displayPlayer = document.querySelector('.display-player')
+            const playerPoints = document.createElement('p')
+            playerPoints.classList.add('p-display')
+            const displayComputer = document.querySelector('.display-computer')
+            const computerPoints = document.createElement('p')
+            computerPoints.classList.add('p-display')
+
+            const startMessage = document.querySelector('.start-message')
+
+            const roundDisplay = document.querySelector('.round')
+
+            const roundCount = document.querySelector('.board')
+            roundDisplay.appendChild(roundCount)
+
+            const roundParagraph = document.createElement('p')
+            roundCount.appendChild(roundParagraph)
+
+            const options = document.querySelector('.options')
+
+            const playAgain = document.createElement('button')
+            playAgain.classList.add('playAgain')
+            playAgain.textContent = 'Play Again'
+
+            playAgain.addEventListener('click', function(){
+                location.reload()
+            })
+
+            const buttons = document.querySelectorAll('img');
+            buttons.forEach((img) => {
+                img.addEventListener('click', () => {
+
+                    playerChoice = img.id
+                    playRound(playerChoice, computerPlay())
+                    if(img.id == 'rock'){
+                        img.src = 'images/rock-hover.png'
+                        setTimeout(function(){
+                            img.src = 'images/rock.png'
+                        }, 300);
+                    } else if(img.id == 'paper'){
+                        img.src = 'images/paper-hover.png'
+                        setTimeout(function(){
+                            img.src = 'images/paper.png'
+                        }, 300);
+                    } else {
+                        img.src = 'images/scissors-hover.png'
+                        setTimeout(function(){
+                            img.src = 'images/scissors.png'
+                        }, 300);
+                    }
+                    
+
+                    i++
+                    let round = playRound(playerChoice, computerPlay())
+                    if (round === "playerWins"){
+                        playerScore++
+                        displayPlayer.classList.add('point-animation')
+
+                        setTimeout(function(){
+                            displayPlayer.classList.remove('point-animation')
+                        }, 300);
+                    }
+                    if (round === "computerWins"){
+                        computerScore++
+                        displayComputer.classList.add('point-animation')
+
+                        setTimeout(function(){
+                            displayComputer.classList.remove('point-animation')
+                        }, 300);
+                    }
+                    displayResults(playerScore, computerScore, i);
+
+                    const placeholders = document.querySelectorAll('.placeholder')
+                    placeholders.forEach((placeholder) => {
+                        placeholder.classList.add('hidden')
+                    })
+
+                    startMessage.classList.add('hidden')
+
+                    roundDisplay.classList.remove('hidden')
+
+
+                })
+            })
+
+        
+
+        
+
+
+
+
+    </script>
+</body>
+
+</html>
