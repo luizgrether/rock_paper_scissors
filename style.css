@@ -1,15 +1,13 @@
 body {
-  background-color: rgb(113, 151, 139);
+  background-color: #eeeeee;
   margin: 0px;
   padding: 0;
   width: 100%;
 }
 
 .container {
-  background-color: rgb(31, 63, 63);
-  width: 80%;
-  min-width: 1200px;
-  max-width: 1200px;
+  background-color: #222831;
+  width: 1200px;
   height: 400px;
   margin-top: 110px;
   position: absolute;
@@ -44,7 +42,7 @@ body {
   width: 300px;
   height: 60px;
   margin: auto;
-  box-shadow: 2px 5px 0px 0px #283436;
+  box-shadow: 2px 5px 0px 0px #222831;
   margin-top: 320px;
   border-radius: 10px;
   background-color: #d2d2d2;
@@ -139,7 +137,7 @@ body {
 .display-name-p {
   width: 150px;
   height: 50px;
-  background-color: tomato;
+  background-color: #ff502f;
   top: -170px;
   left: 292px;
   border-radius: 10px;
@@ -150,7 +148,7 @@ body {
 .display-name-c {
   width: 150px;
   height: 50px;
-  background-color: tomato;
+  background-color: #ff502f;
   top: -170px;
   right: 292px;
   border-radius: 10px;
@@ -171,22 +169,22 @@ body {
 .round {
   width: 170px;
   height: 62px;
-  background-color: tomato;
+  background-color: #ff502f;
   left: 0px;
   top: -280px;
   border-radius: 10px;
   z-index: 1;
   position: relative;
-  box-shadow: 2px 5px 0px 0px #283436;
+  box-shadow: 2px 5px 0px 0px #222831;
 }
 
 h1 {
-  font-family: "Bangers", cursive;
-  color: white;
-  font-size: 60px;
+  font-family: "roboto";
+  text-transform: uppercase;
+  color: #232020;
+  font-size: 40px;
   text-align: center;
-  margin-bottom: -70px;
-  text-shadow: 1px 2px 4px black;
+  margin-bottom: -80px;
   line-height: 60px;
 }
 
@@ -257,7 +255,7 @@ h1 {
 }
 
 .point-animation {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 .rock-hover {
