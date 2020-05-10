@@ -194,6 +194,7 @@
                     const computerChoice = computerPlay()
                     playRound(playerChoice, computerChoice)
                     let round = playRound(playerChoice, computerPlay())
+                    i++
                     
                     if(playerChoice == 'rock'){
                         button.innerHTML = '<img class="btn-click" src="images/rock-hover.png">'
@@ -218,7 +219,6 @@
                         
                     if (round == "playerWins"){
                         playerScore++
-                        i++
                         displayPlayer.classList.add('point-animation')
                         displayNameP.classList.add('point-animation')
                         playerBoard.classList.add('point')
@@ -234,7 +234,6 @@
                         }, 600)
                     } else if(round == "computerWins"){
                         computerScore++
-                        i++
                         displayComputer.classList.add('point-animation')
                         displayNameC.classList.add('point-animation')
                         computerBoard.classList.add('point')
