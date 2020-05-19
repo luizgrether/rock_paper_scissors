@@ -1,5 +1,5 @@
 From The Odin Project's [curriculum](https://www.theodinproject.com/lessons/rock-paper-scissors)
 
-My first Javascript project. A console based Rock Paper Scissors game.
+My first Javascript project. A console-based Rock Paper Scissors game.
 
 [View in Browser](https://luizgrether.github.io/rock_paper_scissors/)
